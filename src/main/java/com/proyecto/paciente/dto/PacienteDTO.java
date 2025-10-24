@@ -70,6 +70,22 @@ public class PacienteDTO {
 		this.email = email;
 		this.fecharegistro =  fecharegistro;
 	}
+	
+	public PacienteDTO() {
+		
+	}
+	
+
+    public static PacienteDTO fromEntity(Paciente paciente) {
+        PacienteDTO dto = new PacienteDTO();
+        dto.setIdpaciente(paciente.getIdpaciente());
+        dto.setNombre(paciente.getNombre());
+        dto.setApellido(paciente.getApellido());
+        dto.setDni(paciente.getDni());
+        dto.setTelefono(paciente.getTelefono());
+        dto.setEmail(paciente.getEmail());
+        return dto;
+    }
 
 
 

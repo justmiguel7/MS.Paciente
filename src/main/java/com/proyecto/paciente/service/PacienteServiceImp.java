@@ -5,13 +5,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;  // <-- IMPORTANTE
+import org.springframework.stereotype.Service;
 
 import com.proyecto.paciente.entidades.Paciente;
 import com.proyecto.paciente.repository.PacienteRepository;
 import com.proyecto.paciente.dto.PacienteDTO;
 
-@Service   // <-- ESTA ANOTACIÓN ES LA CLAVE
+@Service
 public class PacienteServiceImp implements PacienteService {
 
     @Autowired
@@ -29,7 +29,7 @@ public class PacienteServiceImp implements PacienteService {
         return optPaciente.orElseThrow(() -> new Exception("Paciente no encontrado con nombre: " + nombre));
     }
 
-    @Override  
+    @Override
     public Paciente buscarPorNombreYApellido(String nombre, String apellido) throws Exception {
         Optional<Paciente> optPaciente = pacienteRepository.findByNombreAndApellido(nombre, apellido);
         return optPaciente.orElseThrow(() -> new Exception("Paciente no encontrado con nombre y apellido: " + nombre + " " + apellido));
@@ -46,10 +46,16 @@ public class PacienteServiceImp implements PacienteService {
         Paciente paciente = optPaciente.orElseThrow(() -> new Exception("Paciente no encontrado con DNI: " + dni));
         pacienteRepository.delete(paciente);
     }
-    
+
     @Override
     public Paciente buscarPorId(int id) throws Exception {
         Optional<Paciente> optPaciente = pacienteRepository.findByIdpaciente(id);
         return optPaciente.orElseThrow(() -> new Exception("Paciente no encontrado con id: " + id));
+    }
+
+    @Override
+    public Paciente buscarPorDni(String dni) throws Exception { // 🔹 NUEVO
+        Optional<Paciente> optPaciente = pacienteRepository.findByDni(dni);
+        return optPaciente.orElseThrow(() -> new Exception("Paciente no encontrado con DNI: " + dni));
     }
 }

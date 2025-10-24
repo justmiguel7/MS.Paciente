@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +57,10 @@ public class PacienteController {
 		  return new ResponseEntity<>(paciente,HttpStatus.OK);
 	}
 	
+
+	
+
+	
 	
 	@RequestMapping(value="/buscarPorapellido/{nombre}/{apellido}", method={RequestMethod.GET})
 	public ResponseEntity<Paciente> buscarPorApellido ( @PathVariable("nombre") String nombre, @PathVariable("apellido") String apellido) throws Exception{
@@ -78,6 +83,13 @@ public class PacienteController {
 		  return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+    // 🔹 NUEVO endpoint para BFF
+    @GetMapping("/buscarPorDni/{dni}")
+    public ResponseEntity<PacienteDTO> buscarPorDni(@PathVariable String dni) throws Exception {
+        Paciente paciente = pacienteService.buscarPorDni(dni);
+        PacienteDTO dto = PacienteDTO.fromEntity(paciente); // Asegurate de tener este método en tu DTO
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 	
 	
 	
