@@ -47,7 +47,7 @@ public class PacienteDTO {
 	private String telefono;
 
 	@NotEmpty
-	@Size(min = 4, max = 20 , message = "la longitud de la direccion es entre 4 y 30 caracteres")
+	@Size(min = 4, max = 50 , message = "la longitud de la direccion es entre 4 y 30 caracteres")
 	private String email;
 	
 	
