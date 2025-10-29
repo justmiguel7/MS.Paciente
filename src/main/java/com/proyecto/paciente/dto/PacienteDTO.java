@@ -84,6 +84,7 @@ public class PacienteDTO {
         dto.setDni(paciente.getDni());
         dto.setTelefono(paciente.getTelefono());
         dto.setEmail(paciente.getEmail());
+        dto.setFecharegistro(paciente.getFecharegistro());
         return dto;
     }
 
